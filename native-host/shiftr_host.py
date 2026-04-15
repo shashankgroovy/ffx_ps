@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Native messaging host for Firefox Profile Switcher extension.
+Shiftr — Native messaging host.
 Reads Firefox profiles from profiles.ini and launches Firefox with a given profile.
 
 configparser lowercases keys on write, but Firefox's profiles.ini is case-sensitive.

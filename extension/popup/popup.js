@@ -1,4 +1,4 @@
-const NATIVE_HOST = "ffx_profile_switcher";
+const NATIVE_HOST = "shiftr_host";
 
 const THEMES = [
   "ayu-dark", "ayu-mirage", "ayu-light",

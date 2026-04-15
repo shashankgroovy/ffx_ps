@@ -1,21 +1,21 @@
-# Firefox Profile Switcher
+# Shiftr
 
-A Firefox extension to quickly switch between Firefox profiles — the **legacy profiles** managed via `about:profiles`.
+**Profile switcher for Firefox** — quickly switch, create, rename, and manage your Firefox profiles from a single popup.
 
-> **Important:** This extension works with the classic profile system (`about:profiles`), **not** the newer profile manager (`about:profilemanager`) introduced in recent Firefox versions. If you manage your profiles through `about:profiles` and `profiles.ini`, this extension is for you.
+Works with the **legacy profile system** (`about:profiles`), **not** the newer `about:profilemanager`.
 
 ## Screenshots
 
 <p align="center">
-  <img src="images/FFX_PS Dark.png" alt="Dark theme" width="270" />
+  <img src="images/FFX_PS Dark.png" alt="Shiftr dark theme" width="270" />
   &nbsp;&nbsp;
-  <img src="images/FFX_PS Light.png" alt="Light theme" width="270" />
+  <img src="images/FFX_PS Light.png" alt="Shiftr light theme" width="270" />
 </p>
 
 ## Features
 
-- **Switch profiles** — Click a profile to launch it in a new Firefox window, or focus it if already running
-- **Keyboard shortcut** — `Alt+Shift+P` opens the profile switcher popup
+- **Switch profiles** — Click a profile to launch it in a new Firefox window
+- **Keyboard shortcut** — `Alt+Shift+P` opens the Shiftr popup
 - **Quick switch** — Inside the popup, press `1`, `2`, `3`... to jump to a profile by number
 - **Create profiles** — Create new profiles directly from the popup without leaving your browser
 - **Rename profiles** — Click the three-dot menu on any profile to rename it
@@ -25,7 +25,7 @@ A Firefox extension to quickly switch between Firefox profiles — the **legacy 
 
 ## How it works
 
-Firefox extensions can't read the filesystem directly, so this uses Firefox's **Native Messaging** API. A small Python script (`ffx_profile_switcher.py`) reads `profiles.ini`, creates/renames profiles, and launches Firefox with the selected profile via `firefox -P <name> -no-remote`.
+Firefox extensions can't read the filesystem directly, so Shiftr uses Firefox's **Native Messaging** API. A small Python script (`shiftr_host.py`) reads `profiles.ini`, creates/renames profiles, and launches Firefox with the selected profile via `firefox -P <name> -no-remote`.
 
 ## Prerequisites
 
@@ -38,8 +38,8 @@ Firefox extensions can't read the filesystem directly, so this uses Firefox's **
 ### Step 1: Clone the repository
 
 ```bash
-git clone <repo-url> ffx_ps
-cd ffx_ps
+git clone <repo-url> shiftr
+cd shiftr
 ```
 
 ### Step 2: Install the native messaging host
@@ -49,7 +49,7 @@ cd ffx_ps
 ```
 
 This does two things:
-1. Makes `native-host/ffx_profile_switcher.py` executable
+1. Makes `native-host/shiftr_host.py` executable
 2. Writes a manifest file to Firefox's native messaging hosts directory:
    - **macOS:** `~/Library/Application Support/Mozilla/NativeMessagingHosts/`
    - **Linux:** `~/.mozilla/native-messaging-hosts/`
@@ -65,13 +65,13 @@ Since this is an unsigned extension, load it as a temporary add-on:
 3. Click **Load Temporary Add-on...**
 4. Navigate to the `extension/` folder and select **`manifest.json`**
 
-The profile switcher icon (swap arrows) will appear in your toolbar.
+The Shiftr icon (swap arrows) will appear in your toolbar.
 
 > **Note:** Temporary add-ons are removed when Firefox restarts. You'll need to reload it each time. See [Permanent Installation](#permanent-installation) below to avoid this.
 
 ### Step 4: Verify it works
 
-1. Click the extension icon in the toolbar — you should see your profiles listed
+1. Click the Shiftr icon in the toolbar — you should see your profiles listed
 2. Click a profile name to launch Firefox with that profile
 3. Try the keyboard shortcut `Alt+Shift+P` to open the popup
 4. Click the palette icon in the header to cycle through themes
@@ -80,7 +80,7 @@ The profile switcher icon (swap arrows) will appear in your toolbar.
 
 | Action | How |
 |---|---|
-| Open profile switcher | Click toolbar icon **or** press `Alt+Shift+P` |
+| Open Shiftr | Click toolbar icon **or** press `Alt+Shift+P` |
 | Switch to a profile | Click the profile name in the popup |
 | Quick switch by number | Press `1` for first profile, `2` for second, etc. |
 | Create a new profile | Click **+ New Profile**, type a name, press Enter or click Create |
@@ -115,7 +115,7 @@ cd extension
 npx web-ext build
 ```
 
-The output will be at `extension/web-ext-artifacts/firefox_profile_switcher-1.0.0.zip`.
+The output will be at `extension/web-ext-artifacts/shiftr-1.0.0.zip`.
 
 To lint the extension for AMO compliance:
 
@@ -156,7 +156,7 @@ If `Alt+Shift+P` conflicts with another extension or tool, you can change it in 
 
 1. Go to `about:addons`
 2. Click the gear icon (top right) and select **Manage Extension Shortcuts**
-3. Find **Firefox Profile Switcher** and set your preferred shortcut
+3. Find **Shiftr** and set your preferred shortcut
 
 ## Troubleshooting
 
@@ -164,14 +164,14 @@ If `Alt+Shift+P` conflicts with another extension or tool, you can change it in 
 
 - Make sure you ran `./install.sh` first
 - Verify the manifest exists:
-  - macOS: `cat ~/Library/Application\ Support/Mozilla/NativeMessagingHosts/ffx_profile_switcher.json`
-  - Linux: `cat ~/.mozilla/native-messaging-hosts/ffx_profile_switcher.json`
-- Check that the `"path"` in the manifest points to the correct absolute path of `ffx_profile_switcher.py`
+  - macOS: `cat ~/Library/Application\ Support/Mozilla/NativeMessagingHosts/shiftr_host.json`
+  - Linux: `cat ~/.mozilla/native-messaging-hosts/shiftr_host.json`
+- Check that the `"path"` in the manifest points to the correct absolute path of `shiftr_host.py`
 - Ensure Python 3 is available: `python3 --version`
 
 ### No profiles listed
 
-- This extension reads from `profiles.ini`, which is managed by `about:profiles` (the legacy system)
+- Shiftr reads from `profiles.ini`, which is managed by `about:profiles` (the legacy system)
 - If you created profiles using the newer `about:profilemanager`, they won't appear here
 - Verify your legacy profiles exist: open `about:profiles` in Firefox
 - Check that `profiles.ini` is readable:
@@ -193,15 +193,15 @@ If `Alt+Shift+P` conflicts with another extension or tool, you can change it in 
 
 Firefox has two profile systems:
 
-- **`about:profiles`** (legacy) — Profiles stored in `profiles.ini`. This is what this extension reads and manages. Profiles created here are independent Firefox instances with separate bookmarks, history, extensions, etc.
-- **`about:profilemanager`** (new) — A newer profile system introduced in recent Firefox versions with a different UI and storage mechanism. This extension does **not** support these profiles.
+- **`about:profiles`** (legacy) — Profiles stored in `profiles.ini`. This is what Shiftr reads and manages. Profiles created here are independent Firefox instances with separate bookmarks, history, extensions, etc.
+- **`about:profilemanager`** (new) — A newer profile system introduced in recent Firefox versions with a different UI and storage mechanism. Shiftr does **not** support these profiles.
 
-If you're unsure which system you use, open `about:profiles` in Firefox. If you see your profiles listed there, this extension will work for you.
+If you're unsure which system you use, open `about:profiles` in Firefox. If you see your profiles listed there, Shiftr will work for you.
 
 ## Project structure
 
 ```
-ffx_ps/
+shiftr/
 ├── extension/
 │   ├── manifest.json          # Extension manifest (permissions, shortcut, metadata)
 │   ├── background.js          # Listens for keyboard shortcut, opens popup
@@ -215,8 +215,13 @@ ffx_ps/
 │       ├── icon-ext-48.svg    # Extensions page icon (dark bg)
 │       └── icon-ext-96.svg    # High-DPI extensions page icon
 ├── native-host/
-│   ├── ffx_profile_switcher.py    # Native messaging host (reads/writes profiles.ini)
-│   └── ffx_profile_switcher.json  # Manifest template (install.sh generates the real one)
+│   ├── shiftr_host.py         # Native messaging host (reads/writes profiles.ini)
+│   └── shiftr_host.json       # Manifest template (install.sh generates the real one)
 ├── install.sh                 # Registers native messaging host with Firefox
+├── LICENSE                    # MIT License
 └── README.md
 ```
+
+## License
+
+[MIT](LICENSE)

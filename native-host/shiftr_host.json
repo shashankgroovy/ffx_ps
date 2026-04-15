@@ -1,0 +1,7 @@
+{
+  "name": "shiftr_host",
+  "description": "Native messaging host for Shiftr",
+  "path": "/PLACEHOLDER/UPDATE_VIA_INSTALL_SCRIPT",
+  "type": "stdio",
+  "allowed_extensions": ["shiftr@local"]
+}

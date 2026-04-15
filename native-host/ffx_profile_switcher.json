@@ -1,7 +1,0 @@
-{
-  "name": "ffx_profile_switcher",
-  "description": "Native messaging host for Firefox Profile Switcher",
-  "path": "/PLACEHOLDER/UPDATE_VIA_INSTALL_SCRIPT",
-  "type": "stdio",
-  "allowed_extensions": ["ffx-profile-switcher@local"]
-}

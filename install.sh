@@ -2,9 +2,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-NATIVE_HOST_NAME="ffx_profile_switcher"
+NATIVE_HOST_NAME="shiftr_host"
 NATIVE_HOST_SCRIPT="$SCRIPT_DIR/native-host/$NATIVE_HOST_NAME.py"
-NATIVE_HOST_MANIFEST="$SCRIPT_DIR/native-host/$NATIVE_HOST_NAME.json"
 
 # Determine the native messaging hosts directory
 case "$(uname -s)" in
@@ -20,7 +19,7 @@ case "$(uname -s)" in
         ;;
 esac
 
-echo "=== Firefox Profile Switcher - Native Host Installer ==="
+echo "=== Shiftr - Native Host Installer ==="
 echo ""
 echo "Native host script: $NATIVE_HOST_SCRIPT"
 echo "Target directory:   $TARGET_DIR"
@@ -36,10 +35,10 @@ mkdir -p "$TARGET_DIR"
 cat > "$TARGET_DIR/$NATIVE_HOST_NAME.json" <<EOF
 {
   "name": "$NATIVE_HOST_NAME",
-  "description": "Native messaging host for Firefox Profile Switcher",
+  "description": "Native messaging host for Shiftr",
   "path": "$NATIVE_HOST_SCRIPT",
   "type": "stdio",
-  "allowed_extensions": ["ffx-profile-switcher@local"]
+  "allowed_extensions": ["shiftr@local"]
 }
 EOF
 
