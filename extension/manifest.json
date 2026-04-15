@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+  "name": "Firefox Profile Switcher",
+  "version": "1.0.0",
+  "description": "Quickly switch between Firefox profiles with a click or keyboard shortcut.",
+  "icons": {
+    "48": "icons/icon-ext-48.svg",
+    "96": "icons/icon-ext-96.svg"
+  },
+  "permissions": [
+    "nativeMessaging",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon-48.svg",
+    "default_popup": "popup/popup.html",
+    "default_title": "Switch Firefox Profile"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "commands": {
+    "switch-profile": {
+      "suggested_key": {
+        "default": "Alt+Shift+P",
+        "mac": "Alt+Shift+P"
+      },
+      "description": "Open profile switcher"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "ffx-profile-switcher@local",
+      "strict_min_version": "109.0"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+# Build artifacts
+extension/web-ext-artifacts/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+
+# Claude
+.claude/
