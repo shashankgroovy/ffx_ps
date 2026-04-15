@@ -4,6 +4,14 @@ A Firefox extension to quickly switch between Firefox profiles — the **legacy 
 
 > **Important:** This extension works with the classic profile system (`about:profiles`), **not** the newer profile manager (`about:profilemanager`) introduced in recent Firefox versions. If you manage your profiles through `about:profiles` and `profiles.ini`, this extension is for you.
 
+## Screenshots
+
+<p align="center">
+  <img src="images/FFX_PS Dark.png" alt="Dark theme" width="270" />
+  &nbsp;&nbsp;
+  <img src="images/FFX_PS Light.png" alt="Light theme" width="270" />
+</p>
+
 ## Features
 
 - **Switch profiles** — Click a profile to launch it in a new Firefox window, or focus it if already running
