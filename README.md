@@ -1,6 +1,13 @@
-# Shiftr
+<p align="center">
+  <img src="images/shiftr-logo-128.png" alt="Shiftr logo" width="80" />
+</p>
 
-**Profile switcher for Firefox** — quickly switch, create, rename, and manage your Firefox profiles from a single popup.
+<h1 align="center">Shiftr</h1>
+
+<p align="center">
+  <b>Profile switcher for Firefox</b> — quickly switch, create, rename, and manage your Firefox profiles from a single popup.<br><br>
+  <a href="https://addons.mozilla.org/en-GB/firefox/addon/shiftr/">Install from AMO</a>
+</p>
 
 Works with the **legacy profile system** (`about:profiles`), **not** the newer `about:profilemanager`.
 
